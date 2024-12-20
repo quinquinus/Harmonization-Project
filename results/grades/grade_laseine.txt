@@ -1,0 +1,5 @@
+Grade of the notes detection : 72.1
+Grade of the scale detection : 100.0
+Grade of the chords determination : 73.4
+
+Final grade of laseine harmonization : 81.0

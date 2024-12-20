@@ -1,0 +1,5 @@
+Grade of the notes detection : 84.6
+Grade of the scale detection : 0.0
+Grade of the chords determination : 40.2
+
+Final grade of reality harmonization : 41.4
