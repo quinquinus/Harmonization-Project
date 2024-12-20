@@ -31,7 +31,7 @@ function [notes, final_scale] = scale_detection(signal, framerate, min_freq, max
     max_index = [find(tab_inter == inter_max);zeros(1,length(find(tab_inter == inter_max)))];
 
     % Based on the fact that a melody usually begins and finishes by its tonic note,
-    % if several scales 
+    % if several scales are found, we favor scales whose tonic corresponds to the first or last note
 
     first_note = notes{1,1};
     last_note = notes{1,size(notes,2)};

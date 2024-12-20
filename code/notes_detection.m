@@ -41,12 +41,4 @@ function notes = notes_detection (signal, framerate, min_freq, max_freq, window_
     end
 
     fprintf('%d notes detected.\n', size(notes, 2));
-    
-    % Affichage des résultats
-    % disp('Notes detected :');
-    % for i = 1:size(notes,2)
-    %     fprintf('%s at %.2fs\n', notes{1,i}, notes{2,i});
-    % end
-    % fprintf('\n');%
-
 end
