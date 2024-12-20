@@ -11,7 +11,6 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
 
 
     disp('Searching for frequencies ...');
-    % tic;%
     overlap = round(overlap*framerate);
     step = window_size - overlap;
 
@@ -19,12 +18,6 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
     max_offset = ceil(framerate/min_freq);
     freq_times = zeros(4,0);
     offset = min_offset:min(max_offset, window_size-1);
-
-    % filename2 = "frequencies.txt";
-    % fileID = fopen(filename2, 'w');
-    % if fileID == -1
-    %     error('Impossible d''ouvrir le fichier.');
-    % end
 
     start_note = 0;
 
@@ -98,34 +91,9 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
             end
         end
 
-        
-        % fprintf("Fenetre centrée à %.2f s : frequence détectée = %.2f Hz\n", (start + window_size/2) / framerate, freq);
-
         vect = [ freq ; if_note; amplitude_window; (start+window_size/2)/framerate ];
         freq_times = [ freq_times , vect ];
-
-        % freq_times2 = freq_times;
-        % freq_times2(1,:) = freq_times2(1,:)/1000;
-        % freq_times2(4,:) = freq_times2(4,:)/10;
-
-        % for i = 1:size(freq_times2, 1)
-        %     fprintf(fileID, '%.3f ', freq_times2(i, :));
-        %     fprintf(fileID, '\n');
-        % end
-        % fprintf(fileID, '\n');
-
-        % if start == 1 + 30*step
-        %     plot(autocorr)
-        %     [~, index2] = max(autocorr);
-        %     disp(offset(index2));
-        %     disp(framerate/offset(index2));
-        % end
     end
-    % fclose(fileID);
-
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 
     disp('Plotting frequencies ...')
 
@@ -134,8 +102,6 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
     xlabel("Time (s)");
     ylabel("Frequencies (Hz)");
     title("Detected frequencies as a function of time");
-    % script_path = fileparts(mfilename('fullpath'));
-    % subfolder = fullfile(script_path, 'results', 'plots');
     subfolder = './results/plots';
     filename = fullfile(subfolder, ['plot_', filename, '.png']);
     saveas(gcf, filename);
@@ -144,7 +110,6 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
 
 
     disp('Determination of the start of same frequencies ...')
-    % tic;%
     indexes = find(freq_times(2,:));
     frequencies = zeros(2,length(indexes));
     for w = 1:length(indexes)-1
@@ -155,7 +120,4 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
     interval = freq_times(1,indexes(length(indexes)):size(freq_times,2));
     frequencies(1,length(indexes)) = mean(interval(interval~=0));
     frequencies(2,length(indexes)) = freq_times(4,indexes(length(indexes)));
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 end
