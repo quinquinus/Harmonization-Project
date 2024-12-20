@@ -7,4 +7,4 @@ notes_ref = {'Sol','La','Fad','Sol','Mi','Fad','Red','Si','La','La','Sol','Fad',
 chords_ref={'Sol','Mi','Sol','La','Sol'; ...
 2.6667,5.3333,8,10.6667,13.3333};
 
-save('alliwantforchristmas.mat', 'scale_ref', 'notes_ref', 'chords_ref');
+save('christmas.mat', 'scale_ref', 'notes_ref', 'chords_ref');
