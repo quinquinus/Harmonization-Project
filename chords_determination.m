@@ -34,9 +34,6 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
             start_temp = start + n;
             if black_temp >= 60/160 && black_temp < 60/80
                 list_times = round((cell2mat(notes(2,:)) - start_temp)/black_temp*8)/8;
-                % if black_temp<0.45 && black_temp>0.435
-                %     disp(list_times);
-                % end
                 if numel(list_times(mod(list_times,0.5)==0)) > max_in_times
                     max_in_times = numel(list_times(mod(list_times,0.5)==0));
                     dif_black = m;
@@ -47,11 +44,9 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
     end
     black = black * (1+dif_black);
     start = start + dif_start;
-    % disp(round((cell2mat(notes(2,:)) - start)/black*8)/8);
-    disp('Determination of chords ...')
 
-    % tic;%
 
+    disp('Determination of chords ...');
 
     for a = 1:number_notes
         if any(strcmp(final_scale{2},notes(1,a)))
@@ -154,9 +149,6 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
     if ~any(notes_deg(2,:) == -1)
         disp('No start of measure seems to be detected !');
         disp(round((cell2mat(notes(2,:))-notes{2,1})/black*4)/4);
-        % time = toc;%
-        % fprintf('Execution time : %.3f seconds\n', time);%
-        % fprintf('\n');%
         return;
     else
         index_measure = find(notes_deg(2,:) == -1);
@@ -184,9 +176,6 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
         if ~any(notes_deg(2,:) == -1)
             chords = [notes_deg; times];
             disp('All chords have been added.');
-            % time = toc;%
-            % fprintf('Execution time : %.3f seconds\n', time);%
-            % fprintf('\n');%
             return;
         end
     
@@ -212,9 +201,6 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
         if ~any(notes_deg(2,:) == -1)
             chords = [notes_deg; times];
             disp('All chords have been added.')
-            % time = toc;%
-            % fprintf('Execution time : %.3f seconds\n', time);%
-            % fprintf('\n');%
             return;
         end 
 
@@ -233,9 +219,6 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
         if ~any(notes_deg(2,:) == -1)
             chords = [notes_deg; times];
             disp('All chords have been added.')
-            % time = toc;%
-            % fprintf('Execution time : %.3f seconds\n', time);%
-            % fprintf('\n');%
             return;
         end
         if notes_deg(2,index_measure(1)) == -1
@@ -274,24 +257,5 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
 
     chords_comp = chords(2:3, chords(2,:) ~= 0);
     comparaison_references(notes_comp, chords_comp, final_scale, filename);
-
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 end
-
-% début :
-% 1-4
-% 1-5
-% 1-4-5
-
-% fin :
-% 5-1
-% 4-1
-% 2-5-1
-
-% milieu :
-% 4-5-1
-% 1-6-2-5
-% 6-4-1-5
 

@@ -2,26 +2,18 @@ disp('MATLAB running');
 fprintf('\n');fprintf('\n');
 set(0, 'DefaultFigureVisible', 'off');
 
-% Chemin du sous-dossier
 subfolder = './references';
 
-
-% Obtenir une liste de tous les fichiers MATLAB (*.m) dans le sous-dossier
 files = dir(fullfile(subfolder, '*.m'));
 
-% Parcourir et exécuter chaque fichier
 for k = 1:length(files)
     scriptPath = fullfile(subfolder, files(k).name);
-    
-    % Exécuter le script tout en maintenant le contexte global
     try
         run(scriptPath);
     catch ME
         fprintf('Error running %s: %s\n', scriptPath, ME.message);
     end
 end
-
-
 run('data_scales.m');
 
 script_path = fileparts(mfilename('fullpath'));
@@ -42,15 +34,9 @@ for i = 1:size(fileNames, 1)
     end
 
     fprintf('File processing : %s\n', filename);
-    % tic;%
     [signal, framerate] = audioread(file_path);
     signal = double(signal)';
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 
-
-    % tic;%
     if size(signal,1)==1
         disp("The signal is in mono.");
     elseif size(signal,1)==2
@@ -58,9 +44,6 @@ for i = 1:size(fileNames, 1)
         signal = mean(signal, 1);
         disp("Converted to mono.");
     end
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 
     % Paramètres pour la fonction de détection
     min_freq = 50; % Fréquence minimale à détecter (Hz)
