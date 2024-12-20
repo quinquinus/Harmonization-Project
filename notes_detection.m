@@ -27,8 +27,7 @@ function notes = notes_detection (signal, framerate, min_freq, max_freq, window_
 
 
     disp('Matching with notes ...')
-    % tic;%
-
+    
     % Finding the closest note to all frequencies found
 
     notes_name = fieldnames(notes_frequencies);
@@ -42,11 +41,6 @@ function notes = notes_detection (signal, framerate, min_freq, max_freq, window_
     end
 
     fprintf('%d notes detected.\n', size(notes, 2));
-
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
-
     
     % Affichage des résultats
     % disp('Notes detected :');
