@@ -15,7 +15,6 @@ function [notes, final_scale] = scale_detection(signal, framerate, min_freq, max
 
 
     disp('Determination of the scale ...');
-    % tic;%
 
     data = load('data_scales.mat', 'scales'); % Loading scales data from data_scales.mat
     scales = data.scales;
@@ -58,8 +57,4 @@ function [notes, final_scale] = scale_detection(signal, framerate, min_freq, max
     
     disp(['This melody is in the scale of : ', final_scale{1}]);
     disp(['Number of notes in common with these : ', num2str(inter_max)]);
-
-    % time = toc;%
-    % fprintf('Execution time : %.3f seconds\n', time);%
-    % fprintf('\n');%
 end
