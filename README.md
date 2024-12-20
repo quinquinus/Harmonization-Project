@@ -66,4 +66,4 @@ echo -e "\nStarting Matlab ..." && matlab -batch "run('main.m')" 2>results/last_
 ```
 
 ## Credits
-caca boudin
+
