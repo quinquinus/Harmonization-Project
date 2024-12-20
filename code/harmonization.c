@@ -65,7 +65,7 @@ int16_t *read_wav(const char *filename, size_t *numSamples, int32_t *framerate) 
             fread(&left, sizeof(int16_t), 1, file);
             fread(&right, sizeof(int16_t), 1, file);
             
-            audioData[i] = (int16_t)((left+right) / 2); // Moyenne des canaux
+            audioData[i] = (int16_t)((left+right) / 2); // Average of channels
         }
     
     } else {
@@ -73,7 +73,7 @@ int16_t *read_wav(const char *filename, size_t *numSamples, int32_t *framerate) 
         fread(audioData, sizeof(int16_t), *numSamples, file);
     }
     fclose(file);
-    return audioData; // Retourner le tableau mono
+    return audioData; // return the mono tab
 }
 
 
@@ -92,16 +92,16 @@ int16_t *one_chord(size_t numSamples, float *freq_accord, int32_t framerate, flo
     for (size_t b = start_sample; b < numSamples; b++){
         float time = (float)(b-start_sample)/framerate;
 
-        // Enveloppe ADSR simplifiée
+        // Simplified ADSR envelopp
         float adsr = (1 - expf(-time * 30)) * expf(-time * 1.2);
 
-        // Somme des ondes
+        // Sum of waves
         float signal = 0.0f;
         for (int i = 0; i < 3; i++) {
             signal += sinf(2 * PI * freq_accord[i] * time);
         }
 
-        // Mise à l'échelle et conversion en int16_t
+        // Scaling and converting to int16_t
         chord[b] = (int16_t)(9000.0f * adsr * signal);
     }
     return chord;
@@ -161,7 +161,7 @@ int16_t **all_chords(size_t numSamples, int32_t framerate, float *frequences, fl
 void write_wav(const char *filename, int16_t *data, size_t numSamples, int32_t framerate) {
     WAVHeader header = {0};
 
-    // Initialiser les champs du header
+    // Initialize header fields
     memcpy(header.chunkID, "RIFF", 4);
     header.chunkSize = 36 + numSamples * sizeof(int16_t);
     memcpy(header.format, "WAVE", 4);
@@ -213,10 +213,7 @@ int main() {
         char *ext = ".wav";
         strcat(filename, ext);
 
-        // clock_t start, end;
-        // double time;
 
-        // start = clock();
         printf("File processing : %s ...\n", filename);
 
         int32_t framerate;
@@ -230,14 +227,7 @@ int main() {
             return EXIT_FAILURE;
         }
 
-        // end = clock();
-        // time = ((double)(end - start)) / CLOCKS_PER_SEC;
-        // printf("Execution time : %.3f seconds\n\n", time);
-
-
-
-
-        // start = clock();
+  
         printf("Reading Matlab results ...\n");
 
         int length;
@@ -267,14 +257,7 @@ int main() {
             }
         }
 
-        // end = clock();
-        // time = ((double)(end - start)) / CLOCKS_PER_SEC;
-        // printf("Execution time : %.3f seconds\n\n", time);
 
-
-
-
-        // start = clock();
         printf("Adding chords to the original audio ...\n");
 
         int final_length;
@@ -283,7 +266,7 @@ int main() {
         ptr_chords = all_chords(numSamples, framerate, frequences, matrix[1], matrix[2], length, &final_length);
         if (ptr_chords == NULL) {
             fprintf(stderr, "Error generating chords.\n");
-            free(audioData); // Libérer les ressources restantes
+            free(audioData); // Free up remaining resources
             return EXIT_FAILURE;
         }
 
@@ -299,23 +282,18 @@ int main() {
         }
         for (size_t a = 0; a < numSamples; a++){
             int32_t sum = audioData[a]*0.4;
-            // int32_t sum = 0;
 
             for (int b = 0; b < final_length; b++){
                 sum += ptr_chords[b][a]*0.4;
             }
-            if (sum > 32767) sum = 32767; // Saturation haute
-            if (sum < -32768) sum = -32768; // Saturation basse
+            if (sum > 32767) sum = 32767; // High saturation
+            if (sum < -32768) sum = -32768; // Low saturation
+
+
             final_audio[a] = (int16_t)sum;
         }
 
-        // end = clock();
-        // time = ((double)(end - start)) / CLOCKS_PER_SEC;
-        // printf("Execution time : %.3f seconds\n\n", time);
-
-
-
-        // start = clock();
+        
         printf("Creating a new WAV file ...\n");
 
         char output_path[100] = "./results/audios/harmonized_";
@@ -324,11 +302,7 @@ int main() {
         write_wav(output_path, final_audio, numSamples, framerate);
         printf("WAV file written successfully\n\n");
 
-        // end = clock();
-        // time = ((double)(end - start)) / CLOCKS_PER_SEC;
-        // printf("Execution time : %.3f seconds\n\n", time);
-
-
+       
 
         for (int b = 0; b < final_length; b++) {
             free(ptr_chords[b]);
