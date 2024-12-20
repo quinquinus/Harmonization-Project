@@ -46,15 +46,14 @@ function [notes, final_scale] = scale_detection(signal, framerate, min_freq, max
     end
 
     max_comp = max(max_index(2,:));
-    max_index = max_index(1,max_index(2,:) == max_comp);
+    max_index = max_index(1,max_index(2,:) == max_comp); % All the scales with the most of corresponding notes
 
     if length(max_index) ~= 1
         disp('Several scales seem to be assigned.');
     end
 
-    index_final_scale = max_index(1);
+    index_final_scale = max_index(1); % Take the first scale by default if there is more than one (minor scales by default)
     final_scale = scales(index_final_scale,:);
     
     disp(['This melody is in the scale of : ', final_scale{1}]);
-    disp(['Number of notes in common with these : ', num2str(inter_max)]);
 end
