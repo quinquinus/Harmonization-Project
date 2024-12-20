@@ -92,7 +92,7 @@ int16_t *one_chord(size_t numSamples, float *freq_accord, int32_t framerate, flo
     for (size_t b = start_sample; b < numSamples; b++){
         float time = (float)(b-start_sample)/framerate;
 
-        // Simplified ADSR envelopp
+        // Simplified ADSR envelop
         float adsr = (1 - expf(-time * 30)) * expf(-time * 1.2);
 
         // Sum of waves

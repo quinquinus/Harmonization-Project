@@ -1,0 +1,5 @@
+Grade of the notes detection : 74.9
+Grade of the scale detection : 100.0
+Grade of the chords determination : 69.8
+
+Final grade of christmas harmonization : 80.4
