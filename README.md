@@ -62,7 +62,7 @@ gcc -Wall code/harmonization.c -o code/harmonization -lm
 ```
 - Then run the line : 
 ```
-echo -e "\nStarting Matlab ..." && matlab -batch "run('code/main.m')" 2>results/last_line.txt && ./code/harmonization.exe < results/last_line.txt
+echo -e "\nStarting Matlab ..." && matlab -batch "run('code/main.m')" 2>results/last_line.txt && ./code/harmonization < results/last_line.txt
 ```
 
 ## Credits
