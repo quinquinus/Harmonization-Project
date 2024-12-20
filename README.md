@@ -67,6 +67,8 @@ echo -e "\nStarting Matlab ..." && matlab -batch "run('code/main.m')" 2>results/
 
 ## Possible uses of the program
 
+This tool could be used by musicians and composers to quickly harmonize melodies, saving time in the creative process. It could serve as an educational resource for music students learning about harmony and chord progressions. Producers could use it to generate harmonized tracks for demos or initial song drafts. Hobbyists and non-musicians might explore it to create music without extensive training. Additionally, it could be integrated into music apps or software as a feature for real-time harmonization.
+
 ## Credits
 
 Authors : Clément Cazajous & Quentin Rolland
