@@ -194,7 +194,8 @@ void write_wav(const char *filename, int16_t *data, size_t numSamples, int32_t f
 
 int main() {
 
-    const char* file_filenames = "audios.txt";
+
+    const char* file_filenames = "./inputs/audios.txt";
     FILE *file = fopen(file_filenames,"r");
     if (!file) {
         perror("Error opening the file of file names");
@@ -220,7 +221,7 @@ int main() {
 
         int32_t framerate;
         size_t numSamples;
-        char path[100] = "audio/";
+        char path[100] = "./inputs/audio/";
         strcat(path, filename);
         int16_t *audioData = read_wav(path, &numSamples, &framerate);
 
@@ -317,7 +318,7 @@ int main() {
         // start = clock();
         printf("Creating a new WAV file ...\n");
 
-        char output_path[100] = "results/audios/harmonized_";
+        char output_path[100] = "./results/audios/harmonized_";
         strcat(output_path, filename);
 
         write_wav(output_path, final_audio, numSamples, framerate);

@@ -58,11 +58,11 @@ export PATH=$PATH:/{matlab path}/bin
 Then retry the which matlab line
 - Run in the bash the following line to compile the C file :
 ```
-gcc -Wall harmonization.c -o harmonization -lm
+gcc -Wall code/harmonization.c -o code/harmonization -lm
 ```
 - Then run the line : 
 ```
-echo -e "\nStarting Matlab ..." && matlab -batch "run('main.m')" 2>results/last_line.txt && ./harmonization.exe < results/last_line.txt
+echo -e "\nStarting Matlab ..." && matlab -batch "run('code/main.m')" 2>results/last_line.txt && ./code/harmonization.exe < results/last_line.txt
 ```
 
 ## Credits

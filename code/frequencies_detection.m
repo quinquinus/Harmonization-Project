@@ -134,8 +134,9 @@ function frequencies = frequencies_detection(signal, framerate, min_freq, max_fr
     xlabel("Time (s)");
     ylabel("Frequencies (Hz)");
     title("Detected frequencies as a function of time");
-    script_path = fileparts(mfilename('fullpath'));
-    subfolder = fullfile(script_path, 'results', 'plots');
+    % script_path = fileparts(mfilename('fullpath'));
+    % subfolder = fullfile(script_path, 'results', 'plots');
+    subfolder = './results/plots';
     filename = fullfile(subfolder, ['plot_', filename, '.png']);
     saveas(gcf, filename);
 

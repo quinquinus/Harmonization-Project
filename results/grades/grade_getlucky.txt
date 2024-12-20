@@ -1,5 +1,0 @@
-Grade of the notes detection : 86.7
-Grade of the scale detection : 100.0
-Grade of the chords determination : 66.0
-
-Final grade of getlucky harmonization : 82.4

@@ -59,7 +59,7 @@ function comparaison_references(notes_comp, chords_comp, scale_comp, filename)
     chords_ref = data1.chords_ref;
     scale_ref = data1.scale_ref;
 
-    data2 = load('data_scales.mat', 'scales');
+    data2 = load('inputs/data_scales.mat', 'scales');
     scales = data2.scales;
 
     % Grade of the notes

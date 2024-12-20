@@ -16,7 +16,7 @@ function [notes, final_scale] = scale_detection(signal, framerate, min_freq, max
 
     disp('Determination of the scale ...');
 
-    data = load('data_scales.mat', 'scales'); % Loading scales data from data_scales.mat
+    data = load('inputs/data_scales.mat', 'scales'); % Loading scales data from data_scales.mat
     scales = data.scales;
 
     present_notes = notes(1,:);

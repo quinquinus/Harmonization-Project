@@ -211,7 +211,7 @@ function [chords, final_scale] = chords_determination(signal, framerate, min_fre
         
         % Compléter
 
-        data = load('data_scales.mat', 'scales');
+        data = load('inputs/data_scales.mat', 'scales');
         scales = data.scales;
         index_scale = find(strcmp(final_scale{1}, scales(:,1)));
         forbidden_chord = 2 + 5 * (index_scale >= 8 && index_scale <= 24);

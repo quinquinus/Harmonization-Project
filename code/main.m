@@ -2,6 +2,9 @@ disp('MATLAB running');
 fprintf('\n');fprintf('\n');
 set(0, 'DefaultFigureVisible', 'off');
 
+cd ..;
+addpath('./code');
+
 subfolder = './references';
 
 files = dir(fullfile(subfolder, '*.m'));
@@ -14,11 +17,11 @@ for k = 1:length(files)
         fprintf('Error running %s: %s\n', scriptPath, ME.message);
     end
 end
-run('data_scales.m');
 
-script_path = fileparts(mfilename('fullpath'));
-subfolder = fullfile(script_path, 'audio');
-filename = 'audios.txt';
+run('inputs/data_scales.m');
+
+subfolder = './inputs/audio';
+filename = './inputs/audios.txt';
 fileID = fopen(filename, 'r');
 fileNames = textscan(fileID, '%s');
 fileNames = fileNames{1};

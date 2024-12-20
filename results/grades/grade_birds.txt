@@ -1,5 +1,0 @@
-Grade of the notes detection : 90.2
-Grade of the scale detection : 80.0
-Grade of the chords determination : 76.8
-
-Final grade of birds harmonization : 81.8
