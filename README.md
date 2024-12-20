@@ -8,7 +8,7 @@ This project modelizes a harmonization of a known melody by adding chords to the
 
 - **inputs** folder contains a audio folder that groups all .wav files needed to harmonize, the list of audios to analyze in .txt file and the database of scales
 - **references** folder represents the real data of the original music, what we tend to have in our results
-- **results** folder groups hramonized audios, plots of frequencies detected and grades of harmonization compared to references
+- **results** folder groups harmonized audios, plots of frequencies detected and grades of harmonization compared to references
 - **code** folder contains program code
 
 ## Execution steps for each melody
@@ -64,6 +64,8 @@ gcc -Wall code/harmonization.c -o code/harmonization -lm
 ```
 echo -e "\nStarting Matlab ..." && matlab -batch "run('code/main.m')" 2>results/last_line.txt && ./code/harmonization < results/last_line.txt
 ```
+
+## Possible uses of the program
 
 ## Credits
 
